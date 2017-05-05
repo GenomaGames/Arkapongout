@@ -5,10 +5,12 @@ public class Ball : MonoBehaviour {
 	public float initialVelocity = 5;
 
 	Rigidbody2D rb;
+	MouseFollower2D mf;
 	bool launched = false;
 
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
+		mf = GetComponent<MouseFollower2D>();
 	}
 
 	void Start () {
@@ -16,13 +18,16 @@ public class Ball : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetMouseButtonDown(0) && !launched) {
-			Launch();
+		if (!launched) {
+			if (Input.GetMouseButtonDown(0)) {
+				Launch();
+			}
 		}
 	}
 
 	void Launch () {
 		launched = true;
+		mf.enabled = false;
 		rb.isKinematic = false;
 		rb.velocity += Vector2.one * initialVelocity;
 	}

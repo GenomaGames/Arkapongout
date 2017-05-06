@@ -2,7 +2,7 @@
 
 Classic arcade game, as the name says it's a mix between [Arkanoid](https://en.wikipedia.org/wiki/Arkanoid), [Pong](https://en.wikipedia.org/wiki/Pong), [Breakout](https://en.wikipedia.org/wiki/Breakout_(video_game)) and probably a few more...
 
-## [Play Now]()
+## [Play Now](https://zombie-unicorn.itch.io/arkapongout)
 
 ## Bugs && Issues
 
@@ -14,4 +14,4 @@ I'm open to any request to add more fun to the game (without breaking the game t
 
 ## Extras
 
-Made with :heart: in [Unity3D](https://unity3d.com/).
+Made with  :heart:  in [Unity3D](https://unity3d.com/).

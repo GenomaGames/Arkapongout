@@ -14,4 +14,4 @@ I'm open to any request to add more fun to the game (without breaking the game t
 
 ## Extras
 
-Made with <span>:heart:</span>  in [Unity3D](https://unity3d.com/).
+Made with&nbsp;&nbsp;:heart:&nbsp;&nbsp;in [Unity3D](https://unity3d.com/).

@@ -15,8 +15,12 @@ public class GameController : Singleton<GameController> {
 		SceneController.Load("Lose");
 	}
 
-	void OnScore (int score) {
+	void OnBrickDestroyed (int score) {
 		ScoreController.instance.Add(score);
+
+		if (Brick.count == 0) {
+			SceneController.Load("Win");
+		}
 	}
 
 	void OnSceneLoaded (Scene scene, LoadSceneMode mode) {

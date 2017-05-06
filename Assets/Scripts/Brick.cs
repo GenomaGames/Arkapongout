@@ -6,10 +6,10 @@ public class Brick : MonoBehaviour {
 
 	public int score = 50;
 
-	GameObject gameCtrl;
+	GameController gameCtrl;
 
 	void Awake () {
-		gameCtrl = GameObject.FindWithTag("GameController");
+		gameCtrl = GameController.instance;
 	}
 
 	void OnCollisionEnter2D (Collision2D coll) {

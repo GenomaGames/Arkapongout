@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreController : MonoBehaviour {
+public class ScoreController : Singleton<ScoreController> {
 
 	public Text scoreText;
 	public int score = 0;

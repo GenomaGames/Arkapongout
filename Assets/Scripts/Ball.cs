@@ -21,6 +21,7 @@ public class Ball : MonoBehaviour {
 		if (!launched) {
 			if (Input.GetMouseButtonDown(0)) {
 				Launch();
+				Debug.Log(Random.Range(-1f, 1f));
 			}
 		}
 	}
@@ -29,6 +30,6 @@ public class Ball : MonoBehaviour {
 		launched = true;
 		mf.enabled = false;
 		rb.isKinematic = false;
-		rb.velocity += Vector2.one * initialVelocity;
+		rb.velocity += new Vector2(Random.Range(-1f, 1f), 1f) * initialVelocity;
 	}
 }

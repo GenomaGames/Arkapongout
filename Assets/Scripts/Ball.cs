@@ -26,7 +26,6 @@ public class Ball : MonoBehaviour {
 		if (!launched) {
 			if (Input.GetMouseButtonDown(0)) {
 				Launch();
-				Debug.Log(Random.Range(-1f, 1f));
 			}
 		}
 	}
@@ -43,8 +42,6 @@ public class Ball : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D coll) {
 		AudioClip hitSound;
-
-		Debug.Log(coll.gameObject.tag);
 
 		switch (coll.gameObject.tag) {
 			case "Brick":

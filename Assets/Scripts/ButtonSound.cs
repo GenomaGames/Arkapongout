@@ -16,12 +16,10 @@ public class ButtonSound : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	}
 
 	public void OnPointerDown (PointerEventData eventData) {
-		Debug.Log(eventData.button);
 		audioSrc.PlayOneShot(buttonDown);
 	}
 
 	public void OnPointerUp (PointerEventData eventData) {
-		Debug.Log(this.gameObject.name + " Was Released.");
 		audioSrc.PlayOneShot(buttonUp);
 	}
 }

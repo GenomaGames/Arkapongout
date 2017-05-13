@@ -9,13 +9,13 @@ public class Ball : MonoBehaviour {
 
 	bool launched = false;
 	Rigidbody2D rb;
-	AudioSource audio;
+	AudioSource audioSrc;
 	MouseFollower2D mf;
 
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
 		mf = GetComponent<MouseFollower2D>();
-		audio = GetComponent<AudioSource>();
+		audioSrc = GetComponent<AudioSource>();
 	}
 
 	void Start () {
@@ -37,8 +37,8 @@ public class Ball : MonoBehaviour {
 		rb.isKinematic = false;
 		rb.velocity += new Vector2(Random.Range(-1f, 1f), 1f) * initialVelocity;
 
-		audio.pitch = Random.Range(.9f, 1.1f);
-		audio.PlayOneShot(paddleCollisionSound);
+		audioSrc.pitch = Random.Range(.9f, 1.1f);
+		audioSrc.PlayOneShot(paddleCollisionSound);
 	}
 
 	void OnCollisionEnter2D (Collision2D coll) {
@@ -58,7 +58,7 @@ public class Ball : MonoBehaviour {
 				break;
 		}
 
-		audio.pitch = Random.Range(.9f, 1.1f);
-		audio.PlayOneShot(hitSound);
+		audioSrc.pitch = Random.Range(.9f, 1.1f);
+		audioSrc.PlayOneShot(hitSound);
 	}
 }

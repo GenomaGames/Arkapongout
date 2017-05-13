@@ -2,6 +2,7 @@
 
 public class Paddle : MonoBehaviour {
 
+	public int lifes = 3;
 	public bool autopilot = false;
 
 	GameObject ball;

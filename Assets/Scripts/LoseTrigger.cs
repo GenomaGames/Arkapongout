@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LoseTrigger : MonoBehaviour {
 
+	public AudioClip loseSound;
+
 	GameController gameCtrl;
 
 	void Awake () {
@@ -12,6 +14,7 @@ public class LoseTrigger : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Ball") {
+			AudioSource.PlayClipAtPoint(loseSound, Vector2.zero);
 			gameCtrl.SendMessage("OnBallOut");
 		}
 	}

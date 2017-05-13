@@ -3,14 +3,19 @@
 public class Ball : MonoBehaviour {
 
 	public float initialVelocity = 5;
+	public AudioClip genericCollisionSound;
+	public AudioClip brickCollisionSound;
+	public AudioClip paddleCollisionSound;
 
-	Rigidbody2D rb;
-	MouseFollower2D mf;
 	bool launched = false;
+	Rigidbody2D rb;
+	AudioSource audio;
+	MouseFollower2D mf;
 
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
 		mf = GetComponent<MouseFollower2D>();
+		audio = GetComponent<AudioSource>();
 	}
 
 	void Start () {
@@ -31,5 +36,29 @@ public class Ball : MonoBehaviour {
 		mf.enabled = false;
 		rb.isKinematic = false;
 		rb.velocity += new Vector2(Random.Range(-1f, 1f), 1f) * initialVelocity;
+
+		audio.pitch = Random.Range(.9f, 1.1f);
+		audio.PlayOneShot(paddleCollisionSound);
+	}
+
+	void OnCollisionEnter2D (Collision2D coll) {
+		AudioClip hitSound;
+
+		Debug.Log(coll.gameObject.tag);
+
+		switch (coll.gameObject.tag) {
+			case "Brick":
+				hitSound = brickCollisionSound;
+				break;
+			case "Paddle":
+				hitSound = paddleCollisionSound;
+				break;
+			default:
+				hitSound = genericCollisionSound;
+				break;
+		}
+
+		audio.pitch = Random.Range(.9f, 1.1f);
+		audio.PlayOneShot(hitSound);
 	}
 }

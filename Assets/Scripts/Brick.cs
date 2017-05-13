@@ -6,6 +6,7 @@ public class Brick : MonoBehaviour {
 
 	public static int count = 0;
 
+	public bool inmortal = false;
 	public int score = 50;
 	[Range(0f, 1f)]
 	public float powerUpChance = 0f;
@@ -22,11 +23,13 @@ public class Brick : MonoBehaviour {
 			powerUpContainer = new GameObject("PowerUpsContainer");
 		}
 
-		count++;
+		if (!inmortal) {
+			count++;
+		}
 	}
 
 	void OnCollisionEnter2D (Collision2D coll) {
-		if (coll.gameObject.tag == "Ball") {
+		if (!inmortal && coll.gameObject.tag == "Ball") {
 			count--;
 			gameCtrl.SendMessage("OnBrickDestroyed", score);
 

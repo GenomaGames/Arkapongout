@@ -1,12 +1,13 @@
 fileFormatVersion: 2
 guid: 3847d1e66f791a34888943c7a4d7f77c
-timeCreated: 1492992428
+timeCreated: 1494718583
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Brick
     21300002: Ball
     21300004: Paddle
+    21300006: EnlargePowerUp
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -161,6 +162,19 @@ TextureImporter:
         x: 4
         y: 241
         width: 24
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EnlargePowerUp
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 230
+        width: 5
         height: 3
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

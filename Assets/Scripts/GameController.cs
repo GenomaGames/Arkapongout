@@ -31,7 +31,7 @@ public class GameController : Singleton<GameController> {
 		ScoreController.instance.Add(score);
 
 		if (Brick.count == 0) {
-			SceneController.Load("Win");
+			Invoke("Win", 1.5f);
 		}
 	}
 
@@ -40,6 +40,12 @@ public class GameController : Singleton<GameController> {
 			ScoreController.instance.Init();
 			paddle = GameObject.FindGameObjectWithTag("Paddle").GetComponent<Paddle>();
 			ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
+		} else {
+			ScoreController.instance.UpdateUI();
 		}
+	}
+
+	void Win () {
+		SceneController.Load("Win");
 	}
 }

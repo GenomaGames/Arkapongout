@@ -1,24 +1,30 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreController : Singleton<ScoreController> {
 
-	public Text scoreText;
 	public int score = 0;
 
-	void Start () {
-		if (GameObject.FindWithTag("Score") != null) {
-			scoreText = GameObject.FindWithTag("Score").GetComponent<Text>();
-		}
+	Text _scoreText;
 
-		UpdateUI();
+	public Text scoreText {
+		get {
+			if (_scoreText != null) {
+				return _scoreText;
+			} else {
+				GameObject go = GameObject.FindGameObjectWithTag("Score");
+
+				if (go != null) {
+					return go.GetComponent<Text>();
+				} else {
+					return null;
+				}
+			}
+		}
 	}
 
 	public void Init () {
-		if (GameObject.FindWithTag("Score") != null) {
-			scoreText = GameObject.FindWithTag("Score").GetComponent<Text>();
-		}
-
 		score = 0;
 		UpdateUI();
 	}
@@ -33,7 +39,7 @@ public class ScoreController : Singleton<ScoreController> {
 		UpdateUI();
 	}
 
-	void UpdateUI () {
+	public void UpdateUI () {
 		if (scoreText != null) {
 			scoreText.text = score.ToString("D6");
 		}

@@ -3,43 +3,33 @@
 public class Paddle : MonoBehaviour {
 
 	public int lifes = 3;
-	public bool autopilot = false;
 	public AudioClip powerUpSound;
+	[Range(0f, 40f)]
+	public float speed = 20;
 
-	GameObject ball;
-	MouseFollower2D mf;
 	AudioSource audioSrc;
+	Collider2D col2D;
 
 	void Awake () {
-		ball = GameObject.FindGameObjectWithTag("Ball");
-		mf = GetComponent<MouseFollower2D>();
 		audioSrc = GetComponent<AudioSource>();
-	}
-
-	void Start () {
-	}
-
-	// Update is called once per frame
-	void Update () {
-		if (autopilot) {
-			if (GetComponent<MouseFollower2D>() != null && GetComponent<MouseFollower2D>().enabled) {
-				GetComponent<MouseFollower2D>().enabled = false;
-			}
-
-			if (Mathf.Abs(ball.GetComponent<Rigidbody2D>().velocity.x) > .5f) {
-				transform.position = new Vector2(ball.transform.position.x, transform.position.y);
-			} else {
-				transform.position = new Vector2(ball.transform.position.x - .9f, transform.position.y);
-			}
-		} else if (GetComponent<MouseFollower2D>() != null && !GetComponent<MouseFollower2D>().enabled) {
-			GetComponent<MouseFollower2D>().enabled = true;
-		}
+		col2D = GetComponent<Collider2D>();
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "PowerUp") {
 			Debug.Log("[Paddle] PowerUp Catched");
 			ApplyPowerUp(other.gameObject);
+		}
+	}
+
+	void OnMove (Vector3 newPos) {
+		if (speed == 0) {
+			transform.Translate(newPos);
+		} else {
+			float distance = Vector3.Distance(transform.position, newPos);
+			float step = Time.deltaTime * speed * distance;
+
+			transform.position = Vector3.MoveTowards(transform.position, newPos, step);
 		}
 	}
 
@@ -50,7 +40,6 @@ public class Paddle : MonoBehaviour {
 			Vector3 gain = new Vector3(.2f, 0, 0);
 
 			transform.localScale += gain;
-			mf.boundaries += (Vector2)gain;
 			audioSrc.pitch = Random.Range(.9f, 1.1f);
 			audioSrc.PlayOneShot(powerUpSound);
 		}

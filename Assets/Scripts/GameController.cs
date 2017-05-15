@@ -16,7 +16,7 @@ public class GameController : Singleton<GameController> {
 
 	void CheckLifes () {
 		if (paddle.lifes == 0) {
-			SceneController.Load("Lose");
+			LoseGame();
 		} else {
 			ball.Reset();
 		}
@@ -31,21 +31,35 @@ public class GameController : Singleton<GameController> {
 		ScoreController.instance.Add(score);
 
 		if (Brick.count == 0) {
-			Invoke("Win", 1.5f);
+			Invoke("WinGame", 1.5f);
 		}
 	}
 
 	void OnSceneLoaded (Scene scene, LoadSceneMode mode) {
 		if (scene.name.Contains("Game")) {
-			ScoreController.instance.Init();
-			paddle = GameObject.FindGameObjectWithTag("Paddle").GetComponent<Paddle>();
-			ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
+			GameSetup();
 		} else {
-			ScoreController.instance.UpdateUI();
+			MenuSetup();
 		}
 	}
 
-	void Win () {
+	void GameSetup () {
+		InputController.instance.inMenu = false;
+		ScoreController.instance.Init();
+		paddle = GameObject.FindWithTag("Paddle") ? GameObject.FindWithTag("Paddle").GetComponent<Paddle>() : null;
+		ball = GameObject.FindWithTag("Ball") ? GameObject.FindWithTag("Ball").GetComponent<Ball>() : null;
+	}
+
+	void MenuSetup () {
+		InputController.instance.inMenu = true;
+		ScoreController.instance.UpdateUI();
+	}
+
+	void WinGame () {
 		SceneController.Load("Win");
+	}
+
+	void LoseGame () {
+		SceneController.Load("Lose");
 	}
 }

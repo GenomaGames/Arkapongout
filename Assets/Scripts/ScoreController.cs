@@ -10,17 +10,15 @@ public class ScoreController : Singleton<ScoreController> {
 
 	public Text scoreText {
 		get {
-			if (_scoreText != null) {
-				return _scoreText;
-			} else {
-				GameObject go = GameObject.FindGameObjectWithTag("Score");
+			if (_scoreText == null) {
+				GameObject go = GameObject.FindWithTag("Score");
 
 				if (go != null) {
-					return go.GetComponent<Text>();
-				} else {
-					return null;
+					_scoreText = go.GetComponent<Text>();
 				}
 			}
+
+			return _scoreText;
 		}
 	}
 

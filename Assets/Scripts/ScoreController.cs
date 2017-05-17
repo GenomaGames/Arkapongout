@@ -37,6 +37,10 @@ public class ScoreController : Singleton<ScoreController> {
 		UpdateUI();
 	}
 
+	public void Subtract (int pScore) {
+		score = score - pScore < 0 ? 0 : score - pScore;
+	}
+
 	public void UpdateUI () {
 		if (scoreText != null) {
 			scoreText.text = score.ToString("D6");

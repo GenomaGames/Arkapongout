@@ -44,6 +44,7 @@ public class Paddle : MonoBehaviour {
 			transform.localScale += gain;
 			audioSrc.pitch = Random.Range(.9f, 1.1f);
 			audioSrc.PlayOneShot(powerUpSound);
+			ScoreController.instance.Add(100);
 		}
 
 		Destroy(powerUp);

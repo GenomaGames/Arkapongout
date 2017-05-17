@@ -23,6 +23,7 @@ public class GameController : Singleton<GameController> {
 	}
 
 	void OnBallOut () {
+		ScoreController.instance.Subtract(500);
 		paddle.lifes--;
 		Invoke("CheckLifes", 1.5f);
 	}

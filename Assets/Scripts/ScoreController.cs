@@ -39,6 +39,7 @@ public class ScoreController : Singleton<ScoreController> {
 
 	public void Subtract (int pScore) {
 		score = score - pScore < 0 ? 0 : score - pScore;
+		UpdateUI();
 	}
 
 	public void UpdateUI () {

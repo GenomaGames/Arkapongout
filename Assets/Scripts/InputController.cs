@@ -27,8 +27,12 @@ public class InputController : Singleton<InputController> {
       }
 
       if (Input.GetButtonDown("Fire1")) {
+        Ball ball = GameObject.FindWithTag("Ball") ? GameObject.FindWithTag("Ball").GetComponent<Ball>() : null;
+
         if (!follower.enabled) {
           follower.enabled = true;
+        } else if (ball != null && !ball.launched) {
+          ball.Launch();
         }
       }
 

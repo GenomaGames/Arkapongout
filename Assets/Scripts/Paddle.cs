@@ -6,13 +6,13 @@ public class Paddle : MonoBehaviour {
 	public AudioClip powerUpSound;
 	[Range(0f, 40f)]
 	public float speed = 20;
+	public float minXpos = -20;
+	public float maxXpos = 20;
 
 	AudioSource audioSrc;
-	Collider2D col2D;
 
 	void Awake () {
 		audioSrc = GetComponent<AudioSource>();
-		col2D = GetComponent<Collider2D>();
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -23,6 +23,8 @@ public class Paddle : MonoBehaviour {
 	}
 
 	void OnMove (Vector3 newPos) {
+		newPos = new Vector3(Mathf.Clamp(newPos.x, minXpos, maxXpos), transform.position.y, transform.position.z);
+
 		if (speed == 0) {
 			transform.Translate(newPos);
 		} else {

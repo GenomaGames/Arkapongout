@@ -24,7 +24,6 @@ public class InputController : Singleton<InputController> {
         newPos += new Vector3(Input.GetAxis("Horizontal"), 0, 0);
 
         paddle.SendMessage("OnMove", newPos, SendMessageOptions.DontRequireReceiver);
-
       }
 
       if (Input.GetButtonDown("Fire1")) {

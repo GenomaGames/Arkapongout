@@ -4,10 +4,17 @@ public class InputController : Singleton<InputController> {
 
 	public bool inMenu = true;
 
-  GameObject paddle;
+  GameObject _paddle;
 
-  void Awake () {
-    paddle = GameObject.FindWithTag("Paddle");
+  GameObject paddle {
+    get {
+      if (_paddle != null) {
+        return _paddle;
+      } else {
+        _paddle = GameObject.FindWithTag("Paddle");
+        return _paddle;
+      }
+    }
   }
 
   void Update () {

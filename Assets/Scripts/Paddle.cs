@@ -6,8 +6,8 @@ public class Paddle : MonoBehaviour {
 	public AudioClip powerUpSound;
 	[Range(0f, 40f)]
 	public float speed = 20;
-	public float minXpos = -20;
-	public float maxXpos = 20;
+	public float minXpos = -15;
+	public float maxXpos = 15;
 
 	AudioSource audioSrc;
 
@@ -48,5 +48,12 @@ public class Paddle : MonoBehaviour {
 		}
 
 		Destroy(powerUp);
+	}
+
+	void OnDrawGizmosSelected () {
+		Vector3 initialPos = new Vector3(0, transform.position.y, transform.position.z);
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawLine(initialPos, initialPos + new Vector3(maxXpos, 0, 0));
+		Gizmos.DrawLine(initialPos, initialPos + new Vector3(minXpos, 0, 0));
 	}
 }

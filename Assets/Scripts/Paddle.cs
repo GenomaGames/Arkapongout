@@ -45,6 +45,8 @@ public class Paddle : MonoBehaviour {
 			audioSrc.pitch = Random.Range(.9f, 1.1f);
 			audioSrc.PlayOneShot(powerUpSound);
 			ScoreController.instance.Add(100);
+		} else if (type == PowerUp.Type.BottomWall) {
+			GameObject.Find("BottomWall").GetComponent<BottomWall>().Activate();
 		}
 
 		Destroy(powerUp);

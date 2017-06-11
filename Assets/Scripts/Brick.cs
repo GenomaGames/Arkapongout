@@ -44,7 +44,7 @@ public class Brick : MonoBehaviour {
 	void DropPowerUp () {
 		if (powerUps.Length == 0) return;
 
-		GameObject powerUp = powerUps[Random.Range(0, powerUps.Length - 1)];
+		GameObject powerUp = powerUps[Random.Range(0, powerUps.Length)];
 		GameObject newPowerUp = Instantiate(powerUp, transform.position, Quaternion.identity);
 
 		if (powerUpContainer != null) {
